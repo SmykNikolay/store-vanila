@@ -1,3 +1,5 @@
+import { HomePage, ProductsPage } from "../pages";
+
 type Route = {
   path: string;
   component: () => Promise<any>;
@@ -5,7 +7,14 @@ type Route = {
 
 export class Router {
   private static _instance: Router;
-  private routes: Route[] = [];
+  private routes: Route[] = [ {
+    path: '/',
+    component: async () => new HomePage()
+  },
+  {
+    path: '/products',
+    component: async () => new ProductsPage()
+  }];
 
   private constructor() {
     this.handleRouteChange = this.handleRouteChange.bind(this);
